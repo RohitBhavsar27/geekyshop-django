@@ -23,7 +23,7 @@
                 <div class="card">
                     <h5 class="card-header">Payment Method</h5>
                     <div class="card-body">
-                        <p class="card-text">PayPal</p>
+                        <p class="card-text">Stripe</p>
                     </div>
                 </div>
                 <div class="card">
@@ -96,11 +96,42 @@
                         <p class="text-center mb-3">
                             <img src="{% static './images/misc/payments.png' %}" height="26">
                         </p>
-                        <a href="{% url 'checkout' %}" class="btn btn-primary btn-block">Make Payment</a>
+                        <button id="checkout-button" class="btn btn-primary btn-block">Pay with Card (Stripe)</button>
+                        
+                        <script>
+                            const stripe = Stripe("{{ STRIPE_PUBLISHABLE_KEY }}");
+
+                            document.getElementById('checkout-button').addEventListener('click', () => {
+                                fetch("{% url 'create_checkout_session' %}", {
+                                    method: 'POST',
+                                    headers: {
+                                        'Content-Type': 'application/json',
+                                        'X-CSRFToken': '{{ csrf_token }}',
+                                    },
+                                })
+                                    .then(response => response.json())
+                                    .then(data => {
+                                        return stripe.redirectToCheckout({ sessionId: data.id });
+                                    })
+                                    .then(result => {
+                                        if (result.error) {
+                                            alert(result.error.message);
+                                        }
+                                    })
+                                    .catch(error => {
+                                        console.error('Error:', error);
+                                    });
+                            });
+                        </script>
+
                     </div>
                 </div>
             </aside>
         </div>
     </div>
 </section>
+
 {% endblock %}
+</body>
+
+</html>

@@ -14,7 +14,7 @@ from pathlib import Path
 import os
 from dotenv import load_dotenv
 
-load_dotenv()
+env = load_dotenv()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -25,6 +25,14 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = "django-insecure-j0a$-8yx($mr2+3ywpcw456-_*$u%t%6**wm-6duy1min^-=rf"
+
+# settings.py
+STRIPE_PUBLISHABLE_KEY = os.getenv("STRIPE_PUBLISHABLE_KEY")
+# print(STRIPE_PUBLISHABLE_KEY)
+
+STRIPE_SECRET_KEY = os.getenv("STRIPE_SECRET_KEY")
+# print(STRIPE_SECRET_KEY)
+
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -71,7 +79,7 @@ TEMPLATES = [
                 "django.contrib.auth.context_processors.auth",
                 "django.contrib.messages.context_processors.messages",
                 "category.context_processors.menu_links",
-                'cart.context_processors.counter',
+                "cart.context_processors.counter",
             ],
         },
     },
@@ -133,7 +141,7 @@ STATICFILES_DIRS = [
 ]
 
 # media files configuration
-MEDIA_URL = 'media/'
+MEDIA_URL = "media/"
 MEDIA_ROOT = BASE_DIR / "media"
 
 
@@ -146,7 +154,7 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 from django.contrib.messages import constants as messages
 
 MESSAGE_TAGS = {
-    messages.ERROR: 'danger',
+    messages.ERROR: "danger",
 }
 
 AUTHENTICATION_BACKENDS = [
