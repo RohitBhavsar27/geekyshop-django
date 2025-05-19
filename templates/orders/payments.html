@@ -96,7 +96,10 @@
                         <p class="text-center mb-3">
                             <img src="{% static './images/misc/payments.png' %}" height="26">
                         </p>
-                        <button id="checkout-button" class="btn btn-primary btn-block">Pay with Card (Stripe)</button>
+                        <button id="checkout-button" class="btn btn-primary btn-block">Pay with Card</button>
+                        <div class="text-center">
+                            <small class="text-muted"><i>Powered by Stripe</i></small>
+                        </div>
                         
                         <script>
                             const stripe = Stripe("{{ STRIPE_PUBLISHABLE_KEY }}");

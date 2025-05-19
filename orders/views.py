@@ -88,7 +88,7 @@ def create_checkout_session(request):
             line_items.append(
                 {
                     "price_data": {
-                        "currency": "usd",  # ✅ Using USD
+                        "currency": "usd",  # Using USD
                         "unit_amount": int(item.product.price * 100),  # in cents
                         "product_data": {
                             "name": item.product.product_name,
@@ -163,7 +163,7 @@ def order_complete(request):
             product.stock -= item.quantity
             product.save()
             
-        #? Clear cart
+        #? Clear cart once purchase is completed
         CartItem.objects.filter(user=request.user).delete()
 
         #? Send email
