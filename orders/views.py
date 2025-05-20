@@ -18,7 +18,7 @@ from django.contrib.auth.decorators import login_required
 stripe.api_key = settings.STRIPE_SECRET_KEY
 
 
-# @login_required(login_url="login")
+@login_required(login_url="login")
 def place_order(request, total=0, quantity=0):
     current_user = request.user
     cart_items = CartItem.objects.filter(user=current_user)
@@ -116,8 +116,6 @@ def create_checkout_session(request):
 
         return JsonResponse({"id": session.id})
 
-
-# @login_required(login_url="login")
 def order_complete(request):
     order_number = request.GET.get("order_number")
     session_id = request.GET.get("session_id")
