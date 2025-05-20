@@ -11,54 +11,55 @@
             <main class="col-md-9">
                 <article class="card">
                     <header class="card-header">
-                        <strong class="d-inline-block mr-3">Edit your profile</strong>
+                        <strong class="d-inline-block mr-3 mt-2">Edit your profile</strong>
+                            <img class="float-right" src="{{userprofile.profile_picture.url}}" alt="Profile Picture" width="35" style="border-radius: 50px;">
                     </header>
                     <div class="card-body">
                         <div class="row">
                             
                             <div class="col-md-12">
-                                <form action="" method="POST">
+                                <form action="{% url 'edit_profile' %}" method="POST" enctype="multipart/form-data">
                                     {% csrf_token %}
                                     <div class="form-row">
                                         <div class="form-group col-md-6">
                                             <label for="fname">First Name</label>
-                                            <input type="text" class="form-control">
+                                            {{user_form.first_name}}
                                         </div>
                                         <div class="form-group col-md-6">
                                             <label for="lname">Last Name</label>
-                                            <input type="text" class="form-control">
+                                            {{user_form.last_name}}                                        
                                         </div>
                                     </div>
                                     <div class="form-row">
                                         <div class="form-group col-md-6">
                                             <label for="phone">Phone Number</label>
-                                            <input type="text" class="form-control">
+                                            {{user_form.phone_number}}                                        
                                         </div>
                                         <div class="form-group col-md-6">
                                             <label for="lname">Profile Picture</label>
-                                            <input type="file" class="form-control" name="" id="">
+                                            {{profile_form.profile_picture}}
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label for="lname">Address Line 1</label>
-                                        <input type="text" class="form-control" name="" id="">
+                                        {{profile_form.address_line_1}}
                                     </div>
                                     <div class="form-group">
                                         <label for="lname">Address Line 2</label>
-                                        <input type="text" class="form-control" name="" id="">
+                                        {{profile_form.address_line_2}}
                                     </div>
                                     <div class="form-row">
                                         <div class="form-group col-md-4">
                                             <label for="city">City</label>
-                                            <input type="text" class="form-control">
+                                            {{profile_form.city}}
                                         </div>
                                         <div class="form-group col-md-4">
                                             <label for="state">State</label>
-                                            <input type="text" class="form-control" name="" id="">
+                                            {{profile_form.state}}
                                         </div>
                                         <div class="form-group col-md-4">
                                             <label for="country">Country</label>
-                                            <input type="text" class="form-control" name="" id="">
+                                            {{profile_form.country}}
                                         </div>
                                     </div>
                                     <input type="submit" class="btn btn-primary" value="Save">
