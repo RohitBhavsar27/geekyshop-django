@@ -24,7 +24,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = "django-insecure-j0a$-8yx($mr2+3ywpcw456-_*$u%t%6**wm-6duy1min^-=rf"
+SECRET_KEY = os.getenv("SECRET_KEY")
 
 # settings.py
 STRIPE_PUBLISHABLE_KEY = os.getenv("STRIPE_PUBLISHABLE_KEY")
@@ -32,7 +32,6 @@ STRIPE_PUBLISHABLE_KEY = os.getenv("STRIPE_PUBLISHABLE_KEY")
 
 STRIPE_SECRET_KEY = os.getenv("STRIPE_SECRET_KEY")
 # print(STRIPE_SECRET_KEY)
-
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
